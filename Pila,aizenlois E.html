@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Composite Number Checker</title>
+  <script>
+    function isComposite(num) {
+      if (num < 4) return false; 
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return true; 
+      }
+      return false;
+    }
+
+    function checkNumbers() {
+      let output = document.getElementById("output");
+      let results = "";
+      let sum = 0;
+
+      do {
+        let input = prompt("Enter a composite number (enter a non-composite or cancel to stop):");
+        if (input === null) break; 
+        
+        let number = parseInt(input);
+
+        if (isNaN(number)) {
+          alert("Please enter a valid number!");
+          continue; 
+        }
+
+        if (!isComposite(number)) {
+          alert("This is not a composite number. Exiting...");
+          break;
+        }
+
+        sum += number; 
+
+        if (number % 2 === 0) {
+          results += number + " is an even number.<br>";
+        } else {
+          results += number + " is an odd number.<br>";
+        }
+
+      } while (true);
+
+      results += "<br>Total sum of composite numbers: " + sum;
+      output.innerHTML = results; 
+    }
+  </script>
+</head>
+<body>
+  <h1>Composite Number Even or Odd Checker</h1>
+  <button onclick="checkNumbers()">Start Checking</button>
+  <div id="output"></div>
+</body>
+</html>
+
